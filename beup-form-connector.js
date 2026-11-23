@@ -131,7 +131,7 @@
   // Un double envoi éventuel est sans conséquence : BEUP ignore un submission_id déjà reçu.
   function beacon(body) {
     try {
-      if (navigator.sendBeacon) { navigator.sendBeacon(endpoint, new Blob([body], { type: 'text/plain;charset=utf-8' })); }
+      if (navigator.sendBeacon) { navigator.sendBeacon(endpoint, new Blob([body], { type: 'text/plain;charset=UTF-8' })); }
     } catch (e) { /* ignore */ }
   }
 
@@ -139,7 +139,7 @@
     var body = JSON.stringify(payload);
     try {
       if (window.fetch) {
-        window.fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body, keepalive: true, credentials: 'omit' })
+        window.fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: body, keepalive: true, credentials: 'omit' })
           .catch(function () { beacon(body); });
         return;
       }

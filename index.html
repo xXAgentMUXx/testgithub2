@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atelier Garrigue – Menuiserie sur mesure</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="index.html">Atelier Garrigue</a>
+    <nav><a href="index.html">Accueil</a><a href="contact.html">Contact</a></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>Menuiserie sur mesure pour votre maison</h1>
+      <p>Cuisines, escaliers, placards. Site fictif de démonstration avec des formulaires existants.</p>
+      <a class="cta" href="contact.html">Demander un devis</a>
+    </section>
+    <section class="block">
+      <h2>Notre lettre d'information</h2>
+      <!-- Formulaire « newsletter » : email seul, BEUP doit l'ignorer (ce n'est pas une demande de contact). -->
+      <form class="news" action="#" method="post" onsubmit="event.preventDefault(); this.innerHTML='<p>Merci, vous êtes inscrit.</p>'">
+        <input name="email" type="email" placeholder="Votre email" required>
+        <button type="submit">S'inscrire</button>
+      </form>
+    </section>
+  </main>
+  <p class="legal">© Atelier Garrigue – site fictif de démonstration</p>
+</body>
+</html>

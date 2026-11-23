@@ -127,15 +127,24 @@
   }
 
   // Requête « simple » (text/plain) : pas de pré-vérification CORS, et elle survit au changement de page.
+  // fetch en premier (sans cookies, erreurs visibles dans la console), sendBeacon en secours.
+  // Un double envoi éventuel est sans conséquence : BEUP ignore un submission_id déjà reçu.
+  function beacon(body) {
+    try {
+      if (navigator.sendBeacon) { navigator.sendBeacon(endpoint, new Blob([body], { type: 'text/plain;charset=UTF-8' })); }
+    } catch (e) { /* ignore */ }
+  }
+
   function send(payload) {
     var body = JSON.stringify(payload);
     try {
-      if (navigator.sendBeacon && navigator.sendBeacon(endpoint, new Blob([body], { type: 'text/plain;charset=UTF-8' }))) { return; }
-    } catch (e) { /* on essaie fetch */ }
-    try {
-      fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: body, keepalive: true, credentials: 'omit' })
-        .catch(function () { /* silencieux : ne jamais gêner le formulaire */ });
-    } catch (e) { /* ignore */ }
+      if (window.fetch) {
+        window.fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: body, keepalive: true, credentials: 'omit' })
+          .catch(function () { beacon(body); });
+        return;
+      }
+    } catch (e) { /* on essaie sendBeacon */ }
+    beacon(body);
   }
 
   function onSubmit(event) {

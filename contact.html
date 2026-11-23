@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact – Atelier Garrigue</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="index.html">Atelier Garrigue</a>
+    <nav><a href="index.html">Accueil</a><a href="contact.html">Contact</a></nav>
+  </header>
+  <main>
+    <section class="block">
+      <h1>Contactez-nous</h1>
+      <p>Formulaire de contact EXISTANT du site (il ne fait rien d'autre qu'afficher un message de remerciement).</p>
+      <form id="contact-form" class="contact" action="#" method="post">
+        <label for="nom">Nom et prénom</label>
+        <input id="nom" name="nom" required>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+        <label for="tel">Téléphone</label>
+        <input id="tel" name="telephone" type="tel">
+        <label for="sujet">Sujet</label>
+        <select id="sujet" name="sujet"><option>Devis cuisine</option><option>Devis escalier</option><option>Autre</option></select>
+        <label for="message">Votre message</label>
+        <textarea id="message" name="message" rows="5"></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+      <p id="merci" hidden>Merci, votre message a bien été envoyé.</p>
+    </section>
+  </main>
+  <p class="legal">© Atelier Garrigue – site fictif de démonstration</p>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      this.hidden = true;
+      document.getElementById('merci').hidden = false;
+    });
+  </script>
+</body>
+</html>
